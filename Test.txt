@@ -1,0 +1,3 @@
+Write QML table.
+3 columns X rows.
+Read from file and fill data (id, name, phone);
