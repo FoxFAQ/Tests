@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package math;
+
+service Math 
+{
+    rpc sendRequest (MathRequest) returns (MathReply) {}
+}
+
+message MathRequest 
+{
+    int32 a = 1;
+    int32 b = 2;
+    int32 operation = 3;
+}
+
+message MathReply 
+{
+    int32 result = 1;
+}
